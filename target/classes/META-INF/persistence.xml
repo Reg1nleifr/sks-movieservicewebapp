@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence">
+    <persistence-unit name="MoviePU">
+        <jta-data-source>java:jboss/datasources/MovieDS</jta-data-source>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+            <property name="hibernate.hbm2ddl.auto" value="update" />
+        </properties>
+        <!--<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
+        <!--<class>entity.Actor</class>-->
+        <!--<class>entity.Movie</class>-->
+        <!--<class>entity.Studio</class>-->
+        <!--<properties>-->
+            <!--<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />-->
+            <!--<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/MovieDB" />-->
+            <!--<property name="javax.persistence.jdbc.user" value="root" />-->
+            <!--<property name="javax.persistence.jdbc.password" value="root" />-->
+
+            <!--<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />-->
+            <!--<property name="hibernate.show_sql" value="true" />-->
+            <!--<property name="hibernate.hbm2ddl.auto" value="create" />-->
+        <!--</properties>-->
+    </persistence-unit>
+</persistence>

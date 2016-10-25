@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+<head>
+    <title>Actor</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+</head>
+<body>
+<ui:repeat value="#{reqActor.allActors}" var="actor">
+    <h1><h:outputText value="#{actor.firstname}"/></h1>
+    <p><h:outputText value="#{actor.lastname}"/></p>
+</ui:repeat>
+</body>
+</html>
