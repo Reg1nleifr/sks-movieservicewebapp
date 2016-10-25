@@ -7,7 +7,7 @@
     <groupId>MovieServiceWebApp</groupId>
     <artifactId>fhtw.movieservicewebapp.at</artifactId>
     <version>0.1-SNAPSHOT</version>
-    <package>war</package>
+    <packaging>war</packaging>
 
     <dependencies>
         <dependency>
