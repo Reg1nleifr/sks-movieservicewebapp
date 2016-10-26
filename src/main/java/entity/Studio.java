@@ -7,6 +7,11 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "Studio")
+@NamedQueries({
+        @NamedQuery(name="Studio.getAll", query = "select a from Studio a"),
+        @NamedQuery(name="Studio.getByName",
+                query = "select a from Studio a where a.name like :name")
+})
 public class Studio {
     private int id;
     private String name;

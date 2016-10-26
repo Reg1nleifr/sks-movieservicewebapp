@@ -9,6 +9,11 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "Movie")
+@NamedQueries({
+        @NamedQuery(name="Movie.getAll", query = "select a from Movie a"),
+        @NamedQuery(name="Movie.getByTitle",
+                query = "select a from Movie a where a.title like :name ")
+})
 public class Movie {
     private int id;
     private String title;

@@ -11,5 +11,15 @@
     <h1><h:outputText value="#{actor.firstname}"/></h1>
     <p><h:outputText value="#{actor.lastname}"/></p>
 </ui:repeat>
+
+<ui:repeat value="#{reqMovie.allMovies}" var="movie">
+    <h1><h:outputText value="#{movie.title}"/></h1>
+    <p><h:outputText value="#{movie.description}"/></p>
+</ui:repeat>
+
+<ui:repeat value="#{reqStudio.allStudios}" var="studio">
+    <h1><h:outputText value="#{studio.name}"/></h1>
+    <p><h:outputText value="#{studio.postcode}"/></p>
+</ui:repeat>
 </body>
 </html>
