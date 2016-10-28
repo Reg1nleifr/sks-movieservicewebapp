@@ -1,10 +1,10 @@
 package entity;
 
+import xmlAdapter.SqlDateAdapter;
+
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.sql.Date;
 import java.util.Collection;
 
@@ -12,27 +12,25 @@ import java.util.Collection;
  * Created by Flo on 06/10/16.
  */
 @XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "Movie")
+@NamedQueries({
+        @NamedQuery(name="Movie.getAll", query = "select a from Movie a"),
+        @NamedQuery(name="Movie.getByTitle",
+                query = "select a from Movie a where a.title like lower(:name)")
+})
 public class Movie {
-    @XmlAttribute
-    private int id;
-    @XmlAttribute
-    private String title;
-    @XmlAttribute
-    private String description;
-    @XmlAttribute
-    private String genre;
-    @XmlAttribute
-    private Integer length;
-    @XmlAttribute
-    private Date realease;
 
-    private Collection<Studio> studios;
+    private int id;
+    private String title;
+    private String description;
+    private String genre;
+    private Integer length;
+    private Date realease;
+    private Studio studio;
     private Collection<Actor> actors;
 
-
+    @XmlAttribute
     @Id
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,6 +42,7 @@ public class Movie {
         this.id = id;
     }
 
+    @XmlAttribute
     @Basic
     @Column(name = "TITLE", nullable = true, length = 50)
     public String getTitle() {
@@ -54,6 +53,7 @@ public class Movie {
         this.title = title;
     }
 
+    @XmlAttribute
     @Basic
     @Column(name = "DESCRIPTION", nullable = true, length = 1024)
     public String getDescription() {
@@ -64,6 +64,7 @@ public class Movie {
         this.description = description;
     }
 
+    @XmlAttribute
     @Basic
     @Column(name = "GENRE", nullable = true, length = 50)
     public String getGenre() {
@@ -74,6 +75,7 @@ public class Movie {
         this.genre = genre;
     }
 
+    @XmlAttribute
     @Basic
     @Column(name = "LENGTH", nullable = true)
     public Integer getLength() {
@@ -84,6 +86,7 @@ public class Movie {
         this.length = length;
     }
 
+    @XmlJavaTypeAdapter(SqlDateAdapter.class) // Eventuell Fragen wegen Datenbank
     @Basic
     @Column(name = "REALEASE", nullable = true)
     public Date getRealease() {
@@ -92,6 +95,26 @@ public class Movie {
 
     public void setRealease(Date realease) {
         this.realease = realease;
+    }
+    @XmlElement(name = "movie")
+    @OneToOne(mappedBy = "movie")
+    public Studio getStudio() {
+        return studio;
+    }
+
+    public void setStudio(Studio studio) {
+        this.studio = studio;
+    }
+
+    @XmlElementWrapper(name = "actors")
+    @XmlElement(name = "actor")
+    @ManyToMany(cascade = CascadeType.REFRESH, mappedBy = "movies", fetch = FetchType.EAGER)
+    public Collection<Actor> getActors() {
+        return actors;
+    }
+
+    public void setActors(Collection<Actor> actors) {
+        this.actors = actors;
     }
 
     @Override
@@ -120,24 +143,5 @@ public class Movie {
         result = 31 * result + (length != null ? length.hashCode() : 0);
         result = 31 * result + (realease != null ? realease.hashCode() : 0);
         return result;
-    }
-
-
-    @OneToMany(mappedBy = "movie")
-    public Collection<Studio> getStudios() {
-        return studios;
-    }
-
-    public void setStudios(Collection<Studio> studios) {
-        this.studios = studios;
-    }
-
-    @ManyToMany(cascade = CascadeType.REFRESH, mappedBy = "movies", fetch = FetchType.LAZY)
-    public Collection<Actor> getActors() {
-        return actors;
-    }
-
-    public void setActors(Collection<Actor> actors) {
-        this.actors = actors;
     }
 }

@@ -1,7 +1,7 @@
 package controller;
 
-import entity.Actor;
-import services.ActorService;
+import entity.Movie;
+import services.MovieService;
 
 import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
@@ -12,25 +12,24 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Created by Flo on 06/10/16.
+ * Created by Stefan on 26.10.2016.
  */
-@WebServlet("/actors")
-public class ActorServlet extends HttpServlet {
-
-
+@WebServlet("/movies")
+public class MovieServlet extends HttpServlet{
     @Inject
-    private ActorService actorService;
+    private MovieService movieService;
 
-    public ActorServlet() {
+    public MovieServlet(){
     }
 
     protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
         out.println("<html>");
         out.println("<body>");
-        for (Actor actor: actorService.getAll()) {
-            out.print("<h1>"+actor.getFirstname()+"</h1>");
-            out.print("<p>"+actor.getLastname()+"</p>");
+        out.print("<h1>Movies</h1>");
+        for (Movie movie: movieService.getAll()){
+            out.print("<h2>"+movie.getTitle()+"</h2>");
+            out.print("<p>"+movie.getDescription()+"</p>");
         }
         out.println("</body>");
         out.println("</html>");

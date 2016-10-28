@@ -3,13 +3,24 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html">
 <head>
-    <title>Actor</title>
+    <title>Everything</title>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
 </head>
 <body>
+<a href="actors.xhtml"><h1>Actors</h1></a>
 <ui:repeat value="#{reqActor.allActors}" var="actor">
-    <h1><h:outputText value="#{actor.firstname}"/></h1>
+    <h2><h:outputText value="#{actor.firstname}"/></h2>
     <p><h:outputText value="#{actor.lastname}"/></p>
+</ui:repeat>
+<h1>Movies</h1>
+<ui:repeat value="#{reqMovie.allMovies}" var="movie">
+    <h2><h:outputText value="#{movie.title}"/></h2>
+    <p><h:outputText value="#{movie.description}"/></p>
+</ui:repeat>
+<h1>Studios</h1>
+<ui:repeat value="#{reqStudio.allStudios}" var="studio">
+    <h2><h:outputText value="#{studio.name}"/></h2>
+    <p><h:outputText value="#{studio.postcode}"/></p>
 </ui:repeat>
 </body>
 </html>

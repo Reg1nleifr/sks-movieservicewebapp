@@ -1,9 +1,9 @@
 package services;
 
-import com.sun.tools.javac.util.List;
 import entity.Movie;
 
 import javax.jws.WebService;
+import java.util.List;
 
 /**
  * Created by Flo on 28/10/2016.
@@ -11,5 +11,7 @@ import javax.jws.WebService;
 @WebService
 public interface MovieWebService {
 
-    public List<Movie> getAllMovies();
+    List<Movie> getAllMovies();
+    List<Movie> getMoviesContains(String name);
+
 }

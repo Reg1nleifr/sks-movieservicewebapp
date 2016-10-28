@@ -2,10 +2,7 @@ package entity;
 
 import javax.inject.Named;
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.sql.Date;
 import java.util.Collection;
 
@@ -13,7 +10,6 @@ import java.util.Collection;
  * Created by Flo on 06/10/16.
  */
 @XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "Actor")
 @NamedQueries({
@@ -24,17 +20,14 @@ import java.util.Collection;
                 query = "select a from Actor a where a.firstname like :name OR a.lastname like :name")
 })
 public class Actor {
-    @XmlAttribute
     private int id;
-    @XmlAttribute
     private String firstname;
-    @XmlAttribute
     private String lastname;
-    @XmlAttribute
     private String sex;
-    @XmlAttribute
     private Date birthdate;
+    private Collection<Movie> movies;
 
+    @XmlAttribute
     @Id
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,6 +38,8 @@ public class Actor {
     public void setId(int id) {
         this.id = id;
     }
+
+    @XmlAttribute
     @Basic
     @Column(name = "FIRSTNAME", nullable = true, length = 50)
     public String getFirstname() {
@@ -55,6 +50,7 @@ public class Actor {
         this.firstname = firstname;
     }
 
+    @XmlAttribute
     @Basic
     @Column(name = "LASTNAME", nullable = true, length = 50)
     public String getLastname() {
@@ -65,6 +61,7 @@ public class Actor {
         this.lastname = lastname;
     }
 
+    @XmlAttribute
     @Basic
     @Column(name = "SEX", nullable = true, length = 1)
     public String getSex() {
@@ -75,6 +72,7 @@ public class Actor {
         this.sex = sex;
     }
 
+    @XmlTransient //TODO: Muss ein eigenen Compiler machen!
     @Basic
     @Column(name = "BIRTHDATE", nullable = true)
     public Date getBirthdate() {
@@ -83,6 +81,16 @@ public class Actor {
 
     public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
+    }
+
+    @XmlTransient
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    public Collection<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(Collection<Movie> movies) {
+        this.movies = movies;
     }
 
     @Override
@@ -109,16 +117,5 @@ public class Actor {
         result = 31 * result + (sex != null ? sex.hashCode() : 0);
         result = 31 * result + (birthdate != null ? birthdate.hashCode() : 0);
         return result;
-    }
-
-    private Collection<Movie> movies;
-
-    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    public Collection<Movie> getMovies() {
-        return movies;
-    }
-
-    public void setMovies(Collection<Movie> movies) {
-        this.movies = movies;
     }
 }

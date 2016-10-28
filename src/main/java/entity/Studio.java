@@ -1,18 +1,27 @@
 package entity;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.*;
 
 /**
  * Created by Flo on 06/10/16.
  */
+@XmlRootElement
 @Entity
 @Table(name = "Studio")
+@NamedQueries({
+        @NamedQuery(name="Studio.getAll", query = "select a from Studio a"),
+        @NamedQuery(name="Studio.getByName",
+                query = "select a from Studio a where a.name like :name")
+})
 public class Studio {
     private int id;
     private String name;
     private String countrycode;
     private Integer postcode;
+    private Movie movie;
 
+    @XmlAttribute
     @Id
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +33,7 @@ public class Studio {
         this.id = id;
     }
 
+    @XmlAttribute
     @Basic
     @Column(name = "NAME", nullable = true, length = 50)
     public String getName() {
@@ -34,6 +44,7 @@ public class Studio {
         this.name = name;
     }
 
+    @XmlAttribute
     @Basic
     @Column(name = "COUNTRYCODE", nullable = true, length = 3)
     public String getCountrycode() {
@@ -44,6 +55,7 @@ public class Studio {
         this.countrycode = countrycode;
     }
 
+    @XmlAttribute
     @Basic
     @Column(name = "POSTCODE", nullable = true)
     public Integer getPostcode() {
@@ -52,6 +64,16 @@ public class Studio {
 
     public void setPostcode(Integer postcode) {
         this.postcode = postcode;
+    }
+
+    @XmlTransient
+    @OneToOne
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
     }
 
     @Override
@@ -76,16 +98,5 @@ public class Studio {
         result = 31 * result + (countrycode != null ? countrycode.hashCode() : 0);
         result = 31 * result + (postcode != null ? postcode.hashCode() : 0);
         return result;
-    }
-
-    private Movie movie;
-
-    @ManyToOne(optional = false)
-    public Movie getMovie() {
-        return movie;
-    }
-
-    public void setMovie(Movie movie) {
-        this.movie = movie;
     }
 }
