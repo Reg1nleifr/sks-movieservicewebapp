@@ -2,7 +2,7 @@ package managed;
 
 import java.util.List;
 import entity.Actor;
-import services.ActorFacade;
+import services.ActorService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -16,7 +16,7 @@ import javax.inject.Named;
 public class ActorManaged {
 
     @Inject
-    ActorFacade actorService;
+    ActorService actorService;
 
     public List<Actor> getAllActors() {
         return actorService.getAll();

@@ -1,7 +1,7 @@
 package controller;
 
 import entity.Actor;
-import services.ActorFacade;
+import services.ActorService;
 
 import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +19,7 @@ public class ActorServlet extends HttpServlet {
 
 
     @Inject
-    private ActorFacade actorFacade;
+    private ActorService actorFacade;
 
     public ActorServlet() {
     }

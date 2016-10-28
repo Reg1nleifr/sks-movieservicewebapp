@@ -1,21 +1,37 @@
 package entity;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.sql.Date;
 import java.util.Collection;
 
 /**
  * Created by Flo on 06/10/16.
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "Movie")
 public class Movie {
+    @XmlAttribute
     private int id;
+    @XmlAttribute
     private String title;
+    @XmlAttribute
     private String description;
+    @XmlAttribute
     private String genre;
+    @XmlAttribute
     private Integer length;
+    @XmlAttribute
     private Date realease;
+
+    private Collection<Studio> studios;
+    private Collection<Actor> actors;
+
 
     @Id
     @Column(name = "ID", nullable = false)
@@ -106,7 +122,6 @@ public class Movie {
         return result;
     }
 
-    private Collection<Studio> studios;
 
     @OneToMany(mappedBy = "movie")
     public Collection<Studio> getStudios() {
@@ -116,8 +131,6 @@ public class Movie {
     public void setStudios(Collection<Studio> studios) {
         this.studios = studios;
     }
-
-    private Collection<Actor> actors;
 
     @ManyToMany(cascade = CascadeType.REFRESH, mappedBy = "movies", fetch = FetchType.LAZY)
     public Collection<Actor> getActors() {

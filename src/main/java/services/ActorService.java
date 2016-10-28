@@ -15,7 +15,7 @@ import javax.persistence.TypedQuery;
  * Created by Flo on 06/10/16.
  */
 @Stateless
-public class ActorFacade {
+public class ActorService {
 
     @PersistenceContext
     private EntityManager entityManager;

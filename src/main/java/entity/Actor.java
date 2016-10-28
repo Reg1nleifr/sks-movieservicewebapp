@@ -2,12 +2,18 @@ package entity;
 
 import javax.inject.Named;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.sql.Date;
 import java.util.Collection;
 
 /**
  * Created by Flo on 06/10/16.
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "Actor")
 @NamedQueries({
@@ -18,10 +24,15 @@ import java.util.Collection;
                 query = "select a from Actor a where a.firstname like :name OR a.lastname like :name")
 })
 public class Actor {
+    @XmlAttribute
     private int id;
+    @XmlAttribute
     private String firstname;
+    @XmlAttribute
     private String lastname;
+    @XmlAttribute
     private String sex;
+    @XmlAttribute
     private Date birthdate;
 
     @Id
@@ -34,7 +45,6 @@ public class Actor {
     public void setId(int id) {
         this.id = id;
     }
-
     @Basic
     @Column(name = "FIRSTNAME", nullable = true, length = 50)
     public String getFirstname() {
