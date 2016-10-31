@@ -2,6 +2,7 @@ package entity;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
+import java.util.List;
 
 /**
  * Created by Flo on 06/10/16.
@@ -12,14 +13,14 @@ import javax.xml.bind.annotation.*;
 @NamedQueries({
         @NamedQuery(name="Studio.getAll", query = "select a from Studio a"),
         @NamedQuery(name="Studio.getByName",
-                query = "select a from Studio a where a.name like :name")
+                query = "select a from Studio a where a.name like concat('%',:name,'%')")
 })
 public class Studio {
     private int id;
     private String name;
     private String countrycode;
     private Integer postcode;
-    private Movie movie;
+    private List<Movie> movies;
 
     @XmlAttribute
     @Id
@@ -67,13 +68,13 @@ public class Studio {
     }
 
     @XmlTransient
-    @OneToOne
-    public Movie getMovie() {
-        return movie;
+    @OneToMany (mappedBy = "studio")
+    public List<Movie> getMovies() {
+        return movies;
     }
 
-    public void setMovie(Movie movie) {
-        this.movie = movie;
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
     }
 
     @Override

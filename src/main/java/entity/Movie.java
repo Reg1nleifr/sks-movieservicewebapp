@@ -26,7 +26,7 @@ public class Movie {
     private String description;
     private String genre;
     private Integer length;
-    private Date realease;
+    private int releaseYear;
     private Studio studio;
     private Collection<Actor> actors;
 
@@ -43,7 +43,6 @@ public class Movie {
     }
 
     @XmlAttribute
-    @Basic
     @Column(name = "TITLE", nullable = true, length = 50)
     public String getTitle() {
         return title;
@@ -54,7 +53,6 @@ public class Movie {
     }
 
     @XmlAttribute
-    @Basic
     @Column(name = "DESCRIPTION", nullable = true, length = 1024)
     public String getDescription() {
         return description;
@@ -65,7 +63,6 @@ public class Movie {
     }
 
     @XmlAttribute
-    @Basic
     @Column(name = "GENRE", nullable = true, length = 50)
     public String getGenre() {
         return genre;
@@ -76,7 +73,6 @@ public class Movie {
     }
 
     @XmlAttribute
-    @Basic
     @Column(name = "LENGTH", nullable = true)
     public Integer getLength() {
         return length;
@@ -86,18 +82,17 @@ public class Movie {
         this.length = length;
     }
 
-    @XmlJavaTypeAdapter(SqlDateAdapter.class) // Eventuell Fragen wegen Datenbank
-    @Basic
-    @Column(name = "REALEASE", nullable = true)
-    public Date getRealease() {
-        return realease;
+    @XmlAttribute
+    @Column(name = "RELEASEYEAR", nullable = true)
+    public int getReleaseYear() {
+        return releaseYear;
     }
 
-    public void setRealease(Date realease) {
-        this.realease = realease;
+    public void setReleaseYear(int release) {
+        this.releaseYear = release;
     }
     @XmlElement(name = "movie")
-    @OneToOne(mappedBy = "movie")
+    @ManyToOne
     public Studio getStudio() {
         return studio;
     }
@@ -115,33 +110,5 @@ public class Movie {
 
     public void setActors(Collection<Actor> actors) {
         this.actors = actors;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Movie movie = (Movie) o;
-
-        if (id != movie.id) return false;
-        if (title != null ? !title.equals(movie.title) : movie.title != null) return false;
-        if (description != null ? !description.equals(movie.description) : movie.description != null) return false;
-        if (genre != null ? !genre.equals(movie.genre) : movie.genre != null) return false;
-        if (length != null ? !length.equals(movie.length) : movie.length != null) return false;
-        if (realease != null ? !realease.equals(movie.realease) : movie.realease != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (genre != null ? genre.hashCode() : 0);
-        result = 31 * result + (length != null ? length.hashCode() : 0);
-        result = 31 * result + (realease != null ? realease.hashCode() : 0);
-        return result;
     }
 }

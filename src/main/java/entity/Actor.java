@@ -72,7 +72,7 @@ public class Actor {
         this.sex = sex;
     }
 
-    @XmlTransient //TODO: Muss ein eigenen Compiler machen!
+    @XmlTransient
     @Basic
     @Column(name = "BIRTHDATE", nullable = true)
     public Date getBirthdate() {
