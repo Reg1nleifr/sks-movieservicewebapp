@@ -1,7 +1,7 @@
 /.idea
 /lib
 /out
-/target
+/target/*
 *.iml
 
 src/test/
