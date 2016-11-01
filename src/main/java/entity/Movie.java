@@ -15,9 +15,17 @@ import java.util.Collection;
 @Entity
 @Table(name = "Movie")
 @NamedQueries({
-        @NamedQuery(name="Movie.getAll", query = "select a from Movie a"),
+        @NamedQuery(name="Movie.getAll", query = "select m from Movie m"),
         @NamedQuery(name="Movie.getByTitle",
-                query = "select a from Movie a where a.title like lower(:name)")
+                query = "select m from Movie m " +
+                            "where m.title like lower(:name)"),
+        @NamedQuery(name="Movie.getMovieCount",
+                query = "select count(m) from Movie m " +
+                        "where m.title = :title " +
+                            "and m.description = :description " +
+                            "and m.genre = :genre " +
+                            "and m.releaseYear = :releaseyear " +
+                            "and m.length = :length")
 })
 public class Movie {
 
@@ -103,7 +111,7 @@ public class Movie {
 
     @XmlElementWrapper(name = "actors")
     @XmlElement(name = "actor")
-    @ManyToMany(cascade = CascadeType.REFRESH, mappedBy = "movies", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "movies")
     public Collection<Actor> getActors() {
         return actors;
     }
