@@ -99,7 +99,8 @@ public class Movie {
     public void setReleaseYear(int release) {
         this.releaseYear = release;
     }
-    @XmlElement(name = "movie")
+
+    @XmlElement(name = "studio")
     @ManyToOne
     public Studio getStudio() {
         return studio;
@@ -111,7 +112,7 @@ public class Movie {
 
     @XmlElementWrapper(name = "actors")
     @XmlElement(name = "actor")
-    @ManyToMany(mappedBy = "movies")
+    @ManyToMany(mappedBy = "movies", fetch = FetchType.EAGER)
     public Collection<Actor> getActors() {
         return actors;
     }
