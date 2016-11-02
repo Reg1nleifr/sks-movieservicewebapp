@@ -30,7 +30,7 @@ public class ActorService {
     }
 
     public List<Actor> findByName(String name) {
-        String searchName = "%"+name+"%";
+        String searchName = name;
         return entityManager.createNamedQuery("Actor.getByName", Actor.class)
                 .setParameter("name", searchName).getResultList();
     }

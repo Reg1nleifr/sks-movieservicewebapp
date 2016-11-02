@@ -1,4 +1,4 @@
-package managed;
+package ejb.managed;
 
 import java.util.List;
 import entity.Actor;

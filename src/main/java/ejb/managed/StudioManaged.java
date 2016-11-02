@@ -1,4 +1,4 @@
-package managed;
+package ejb.managed;
 
 import entity.Studio;
 import services.StudioService;

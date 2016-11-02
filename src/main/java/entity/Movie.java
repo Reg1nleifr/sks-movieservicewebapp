@@ -1,24 +1,22 @@
 package entity;
 
-import xmlAdapter.SqlDateAdapter;
-
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.sql.Date;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by Flo on 06/10/16.
  */
 @XmlRootElement
+@XmlType(propOrder = {"title", "genre", "length", "releaseYear","actors" ,"studio" , "description"})
 @Entity
 @Table(name = "Movie")
 @NamedQueries({
         @NamedQuery(name="Movie.getAll", query = "select m from Movie m"),
         @NamedQuery(name="Movie.getByTitle",
                 query = "select m from Movie m " +
-                            "where m.title like lower(:name)"),
+                            "where m.title like concat('%',lower(:name),'%') "),
         @NamedQuery(name="Movie.getMovieCount",
                 query = "select count(m) from Movie m " +
                         "where m.title = :title " +
@@ -36,9 +34,9 @@ public class Movie {
     private Integer length;
     private int releaseYear;
     private Studio studio;
-    private Collection<Actor> actors;
+    private List<Actor> actors;
 
-    @XmlAttribute
+    @XmlTransient
     @Id
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -113,11 +111,11 @@ public class Movie {
     @XmlElementWrapper(name = "actors")
     @XmlElement(name = "actor")
     @ManyToMany(mappedBy = "movies", fetch = FetchType.EAGER)
-    public Collection<Actor> getActors() {
+    public List<Actor> getActors() {
         return actors;
     }
 
-    public void setActors(Collection<Actor> actors) {
+    public void setActors(List<Actor> actors) {
         this.actors = actors;
     }
 }

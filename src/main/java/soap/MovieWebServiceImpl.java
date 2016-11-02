@@ -1,14 +1,13 @@
-package services;
+package soap;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import entity.Movie;
-import helpers.MovieRootElement;
+import services.MovieService;
+import xml.helpers.MovieRootElement;
 
 import javax.inject.Inject;
 import javax.jws.WebMethod;
@@ -23,7 +22,7 @@ import javax.xml.transform.stream.StreamSource;
 /**
  * Created by Flo on 28/10/2016.
  */
-@WebService(endpointInterface = "services.MovieWebService",
+@WebService(endpointInterface = "soap.MovieWebService",
             serviceName = "MovieService",
             portName = "MovieServicePort")
 public class MovieWebServiceImpl implements MovieWebService {
@@ -32,49 +31,45 @@ public class MovieWebServiceImpl implements MovieWebService {
     private MovieService movieService;
 
     @WebMethod
-    public List<Movie> getAllMovies() {
-        return movieService.getAll();
+    @Override
+    public MovieRootElement getAllMovies() {
+        return new MovieRootElement(movieService.getAll());
     }
 
     @WebMethod
-    public List<Movie> getMoviesContains(String name)
+    @Override
+    public MovieRootElement getMoviesContains(String name)
     {
-        return movieService.contains(name);
+        return new MovieRootElement(movieService.contains(name));
     }
 
     @WebMethod
+    @Override
     public String persistMoviesFromSoap(String soapInput) {
-        int start = soapInput.indexOf("Body>") + 5;
-        Matcher m = Pattern.compile("</[^>]*Body").matcher(soapInput);
-        if(!m.find()) {
-            return "Document not valid";
-        }
-
-        int end = m.start();
-        String output = soapInput.substring(start, end);
-        Unmarshaller unmarshaller = null;
         try {
-            InputStream soapInutAsByteStream = new ByteArrayInputStream(soapInput.getBytes());
-            MovieRootElement movieRootElement = getMovieRootElement(new StreamSource(soapInutAsByteStream));
-            persistMoviesFromList(movieRootElement.getMovies());
-        } catch (JAXBException e) {
+            InputStream soapInputAsByteStream = new ByteArrayInputStream(soapInput.getBytes());
+            MovieRootElement movieRootElement = getMovieRootElement(new StreamSource(soapInputAsByteStream));
+
+            movieService.persistTransactionally(movieRootElement.getMovies());
+        } catch (Exception e) {
             e.printStackTrace();
+            return "500 Internal Server Error";
         }
 
-        return "200 Ok";
+        return "200 OK";
     }
 
-    @WebMethod
     public String persistMoviesFromFile(String fileName) {
         try {
             MovieRootElement movieRootElement= getMovieRootElement(new StreamSource(
                     new File(fileName)));
-            persistMoviesFromList(movieRootElement.getMovies());
+
         } catch (JAXBException e) {
-            return "400 Internal Server Error";
+            e.printStackTrace();
+            return "500 Internal Server Error";
         }
 
-        return "200 Ok";
+        return "200 OK";
     }
 
     private MovieRootElement getMovieRootElement(Source source) throws JAXBException {
@@ -82,10 +77,6 @@ public class MovieWebServiceImpl implements MovieWebService {
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
         JAXBElement<MovieRootElement> jaxbElement = unmarshaller.unmarshal(source, MovieRootElement.class);
         return jaxbElement.getValue();
-    }
-
-    private void persistMoviesFromList(List<Movie> movies) {
-        movies.forEach(movie -> movieService.persist(movie));
     }
 
 }
