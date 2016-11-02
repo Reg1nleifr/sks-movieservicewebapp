@@ -1,10 +1,12 @@
 package entity;
 
-import javax.inject.Named;
+import xml.helpers.DateAdapter;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.sql.Date;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by Flo on 06/10/16.
@@ -20,10 +22,10 @@ import java.util.Collection;
                                 "or a.lastname like concat('%', :name, '%')"),
         @NamedQuery(name="Actor.getActorCount",
                 query = "select count(a) from Actor a " +
-                            "where a.lastname = :lastname " +
-                                "and a.firstname = :firstname " +
+                            "where a.lastname like :lastname " +
+                                "and a.firstname like :firstname " +
                                 "and a.birthdate = :birthdate " +
-                                "and a.sex = :sex")
+                                "and a.sex like :sex")
 })
 public class Actor {
     private int id;
@@ -31,9 +33,9 @@ public class Actor {
     private String lastname;
     private String sex;
     private Date birthdate;
-    private Collection<Movie> movies;
+    private List<Movie> movies;
 
-    @XmlAttribute
+    @XmlTransient
     @Id
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -75,7 +77,8 @@ public class Actor {
         this.sex = sex;
     }
 
-    @XmlTransient
+    @XmlJavaTypeAdapter(value = DateAdapter.class, type = java.util.Date.class)
+    @XmlAttribute
     @Column(name = "BIRTHDATE", nullable = true)
     public Date getBirthdate() {
         return birthdate;
@@ -87,11 +90,11 @@ public class Actor {
 
     @XmlTransient
     @ManyToMany
-    public Collection<Movie> getMovies() {
+    public List<Movie> getMovies() {
         return movies;
     }
 
-    public void setMovies(Collection<Movie> movies) {
+    public void setMovies(List<Movie> movies) {
         this.movies = movies;
     }
 }
