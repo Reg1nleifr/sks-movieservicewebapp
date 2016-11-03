@@ -77,7 +77,7 @@ public class Actor {
         this.sex = sex;
     }
 
-    @XmlJavaTypeAdapter(value = DateAdapter.class, type = java.util.Date.class)
+    @XmlJavaTypeAdapter(value = DateAdapter.class, type = Date.class)
     @XmlAttribute
     @Column(name = "BIRTHDATE", nullable = true)
     public Date getBirthdate() {
