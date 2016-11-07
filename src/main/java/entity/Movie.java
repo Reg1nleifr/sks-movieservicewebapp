@@ -18,7 +18,7 @@ import java.util.List;
                 query = "select m from Movie m " +
                             "where m.title like concat('%',lower(:name),'%') "),
         @NamedQuery(name="Movie.getMovieCount",
-                query = "select count(m) from Movie m " +
+                query = "select m from Movie m " +
                         "where m.title = :title " +
                             "and m.description = :description " +
                             "and m.genre = :genre " +

@@ -16,7 +16,7 @@ import java.util.List;
                 query = "select s from Studio s " +
                             "where s.name like concat('%',:name,'%')"),
         @NamedQuery(name="Studio.getStudioCount",
-                query = "select count(s) from Studio s " +
+                query = "select s from Studio s " +
                             "where s.name = :name " +
                                 "and s.countrycode = :countrycode " +
                                 "and s.postcode = :postcode")
