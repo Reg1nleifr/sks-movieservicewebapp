@@ -1,9 +1,8 @@
-package xml.helpers;
+package at.technikumwien.helpers;
 
-import entity.Movie;
+import at.technikumwien.entity.Movie;
 
 import javax.xml.bind.annotation.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

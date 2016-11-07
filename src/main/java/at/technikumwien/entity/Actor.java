@@ -1,6 +1,6 @@
-package entity;
+package at.technikumwien.entity;
 
-import xml.helpers.DateAdapter;
+import at.technikumwien.helpers.DateAdapter;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;

@@ -1,15 +1,11 @@
-package services;
+package at.technikumwien.services;
 
-import entity.Actor;
+import at.technikumwien.entity.Actor;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.Stateless;
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
 /**
  * Created by Flo on 06/10/16.

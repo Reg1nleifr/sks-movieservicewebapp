@@ -1,6 +1,6 @@
-package services;
+package at.technikumwien.services;
 
-import entity.Studio;
+import at.technikumwien.entity.Studio;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

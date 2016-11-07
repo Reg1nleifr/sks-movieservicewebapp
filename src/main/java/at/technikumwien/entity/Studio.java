@@ -1,4 +1,4 @@
-package entity;
+package at.technikumwien.entity;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;

@@ -1,7 +1,7 @@
-package ejb.managed;
+package at.technikumwien.managed;
 
-import entity.Movie;
-import services.MovieService;
+import at.technikumwien.entity.Movie;
+import at.technikumwien.services.MovieService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;

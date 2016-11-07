@@ -1,7 +1,7 @@
-package controller;
+package at.technikumwien.controller;
 
-import entity.Studio;
-import services.StudioService;
+import at.technikumwien.entity.Studio;
+import at.technikumwien.services.StudioService;
 
 import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;

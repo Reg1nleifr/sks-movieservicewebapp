@@ -1,13 +1,12 @@
-package soap;
+package at.technikumwien.services.soap;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 
-import entity.Movie;
-import services.MovieService;
-import xml.helpers.MovieRootElement;
+import at.technikumwien.entity.Movie;
+import at.technikumwien.services.MovieService;
+import at.technikumwien.helpers.MovieRootElement;
 
 import javax.inject.Inject;
 import javax.jws.WebMethod;
@@ -22,7 +21,7 @@ import javax.xml.transform.stream.StreamSource;
 /**
  * Created by Flo on 28/10/2016.
  */
-@WebService(endpointInterface = "soap.MovieWebService",
+@WebService(endpointInterface = "at.technikumwien.services.soap.MovieWebService",
         serviceName = "MovieService",
         portName = "MovieServicePort")
 public class MovieWebServiceImpl implements MovieWebService {

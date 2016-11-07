@@ -1,8 +1,8 @@
-package ejb.managed;
+package at.technikumwien.managed;
 
 import java.util.List;
-import entity.Actor;
-import services.ActorService;
+import at.technikumwien.entity.Actor;
+import at.technikumwien.services.ActorService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;

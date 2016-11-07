@@ -1,7 +1,7 @@
-package ejb.managed;
+package at.technikumwien.managed;
 
-import entity.Studio;
-import services.StudioService;
+import at.technikumwien.entity.Studio;
+import at.technikumwien.services.StudioService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
