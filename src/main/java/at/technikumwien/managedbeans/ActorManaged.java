@@ -1,12 +1,12 @@
-package at.technikumwien.managed;
+package at.technikumwien.managedbeans;
 
-import java.util.List;
 import at.technikumwien.entity.Actor;
-import at.technikumwien.services.ActorService;
+import at.technikumwien.services.facades.ActorService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.List;
 
 /**
  * Created by Flo on 21/10/2016.

@@ -1,7 +1,7 @@
-package at.technikumwien.managed;
+package at.technikumwien.managedbeans;
 
 import at.technikumwien.entity.Studio;
-import at.technikumwien.services.StudioService;
+import at.technikumwien.services.facades.StudioService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;

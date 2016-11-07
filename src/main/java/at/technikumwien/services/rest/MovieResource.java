@@ -1,8 +1,7 @@
 package at.technikumwien.services.rest;
 
-import at.technikumwien.controller.RestApplication;
 import at.technikumwien.entity.Movie;
-import at.technikumwien.services.MovieService;
+import at.technikumwien.services.facades.MovieService;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;

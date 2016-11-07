@@ -1,9 +1,11 @@
 package at.technikumwien.entity;
 
-import at.technikumwien.helpers.DateAdapter;
+import at.technikumwien.services.helpers.DateAdapter;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.sql.Date;
 import java.util.List;

@@ -1,8 +1,9 @@
-package at.technikumwien.helpers;
+package at.technikumwien.services.helpers;
 
 import at.technikumwien.entity.Movie;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 /**

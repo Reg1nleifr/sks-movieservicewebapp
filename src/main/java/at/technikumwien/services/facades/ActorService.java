@@ -1,11 +1,11 @@
-package at.technikumwien.services;
+package at.technikumwien.services.facades;
 
 import at.technikumwien.entity.Actor;
 
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
  * Created by Flo on 06/10/16.

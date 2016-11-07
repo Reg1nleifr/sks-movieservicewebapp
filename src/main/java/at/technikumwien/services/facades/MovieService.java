@@ -1,4 +1,4 @@
-package at.technikumwien.services;
+package at.technikumwien.services.facades;
 
 import at.technikumwien.entity.Actor;
 import at.technikumwien.entity.Movie;

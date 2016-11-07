@@ -1,4 +1,4 @@
-package at.technikumwien.helpers;
+package at.technikumwien.services.helpers;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.sql.Date;
