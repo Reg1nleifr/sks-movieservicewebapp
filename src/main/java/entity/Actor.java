@@ -21,11 +21,12 @@ import java.util.List;
                             "where a.firstname like concat('%', :name, '%') " +
                                 "or a.lastname like concat('%', :name, '%')"),
         @NamedQuery(name="Actor.getActorCount",
-                query = "select count(a) from Actor a " +
+                query = "select a from Actor a " +
                             "where a.lastname like :lastname " +
                                 "and a.firstname like :firstname " +
                                 "and a.birthdate = :birthdate " +
                                 "and a.sex like :sex")
+
 })
 public class Actor {
     private int id;
@@ -77,6 +78,7 @@ public class Actor {
         this.sex = sex;
     }
 
+    //TODO: Localdate
     @XmlJavaTypeAdapter(value = DateAdapter.class, type = Date.class)
     @XmlAttribute
     @Column(name = "BIRTHDATE", nullable = true)

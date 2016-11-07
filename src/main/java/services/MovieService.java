@@ -4,12 +4,10 @@ import entity.Actor;
 import entity.Movie;
 import entity.Studio;
 
+import javax.ejb.EJBException;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -27,8 +25,8 @@ public class MovieService {
                 .getResultList();
     }
 
-    @TransactionAttribute(value=TransactionAttributeType.REQUIRED) //TODO: Birthdate im Actor ist immer null, fixen, dann klappts! bzw movie existiert irgendwie nie..
-    public void persistTransactionally(List<Movie> movies) throws Exception {
+    //TODO: Actor / Studio rausladen -> managed
+    public void persistTransactionally(List<Movie> movies) {
         for (Movie movie: movies) {
             if(actorsExist(movie.getActors())
                     && studioExists(movie.getStudio())
@@ -36,7 +34,7 @@ public class MovieService {
                 entityManager.persist(movie);
             }
             else {
-                throw new Exception("Ich mag mich nicht persistieren!"); //TODO: Eigene Expcetion schmeißen!
+                throw new EJBException("Ich mag mich nicht persistieren!");
             }
         }
     }

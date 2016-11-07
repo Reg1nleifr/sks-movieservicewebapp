@@ -66,7 +66,7 @@ public class MovieWebServiceImpl implements MovieWebService {
             return "200 OK";
         }catch (Exception e) {
             e.printStackTrace();
-            return "500 Internal Server Error";
+            return "500 Internal Server Error"; //TODO: Soapfaultexception
         }
     }
 
