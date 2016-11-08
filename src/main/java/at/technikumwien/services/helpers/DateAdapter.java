@@ -4,6 +4,7 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
 /**
  * Created by Flo on 02/11/2016.
@@ -27,3 +28,4 @@ public class DateAdapter extends XmlAdapter<String, Date> {
     }
 
 }
+

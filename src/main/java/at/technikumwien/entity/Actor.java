@@ -1,6 +1,7 @@
 package at.technikumwien.entity;
 
 import at.technikumwien.services.helpers.DateAdapter;
+import at.technikumwien.services.helpers.LocalDateAdapter;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -8,6 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -35,7 +37,7 @@ public class Actor {
     private String firstname;
     private String lastname;
     private String sex;
-    private Date birthdate;
+    private LocalDate birthdate;
     private List<Movie> movies;
 
     @XmlTransient
@@ -81,14 +83,14 @@ public class Actor {
     }
 
     //TODO: Localdate
-    @XmlJavaTypeAdapter(value = DateAdapter.class, type = Date.class)
+    @XmlJavaTypeAdapter(value = LocalDateAdapter.class, type = LocalDate.class)
     @XmlAttribute
     @Column(name = "BIRTHDATE", nullable = true)
-    public Date getBirthdate() {
+    public LocalDate getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
     }
 
