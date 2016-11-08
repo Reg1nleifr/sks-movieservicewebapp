@@ -1,7 +1,9 @@
 package at.technikumwien.entity;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.List;
 
 /**
@@ -25,7 +27,7 @@ public class Studio {
     private int id;
     private String name;
     private String countrycode;
-    private Integer postcode;
+    private String postcode;
     private List<Movie> movies;
 
     @XmlTransient
@@ -62,11 +64,11 @@ public class Studio {
 
     @XmlAttribute
     @Column(name = "POSTCODE", nullable = true)
-    public Integer getPostcode() {
+    public String getPostcode() {
         return postcode;
     }
 
-    public void setPostcode(Integer postcode) {
+    public void setPostcode(String postcode) {
         this.postcode = postcode;
     }
 
