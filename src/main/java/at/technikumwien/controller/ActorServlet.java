@@ -17,7 +17,6 @@ import java.io.PrintWriter;
 @WebServlet("/actors")
 public class ActorServlet extends HttpServlet {
 
-
     @Inject
     private ActorService actorService;
 

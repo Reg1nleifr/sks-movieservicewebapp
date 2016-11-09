@@ -30,4 +30,14 @@ public class StudioService {
         return entityManager.createNamedQuery("Studio.getByName", Studio.class)
                 .setParameter("name", searchName).getResultList();
     }
+
+    public Studio getById(int id) {
+        return entityManager.createNamedQuery("Studio.getById", Studio.class)
+                .setParameter("id", id).getSingleResult();
+    }
+
+    public void deleteById(int id) {
+        entityManager.createNamedQuery("Studio.deleteById")
+                .executeUpdate();
+    }
 }

@@ -2,7 +2,7 @@ package at.technikumwien.services.soap;
 
 import at.technikumwien.entity.Movie;
 import at.technikumwien.services.facades.MovieService;
-import at.technikumwien.services.helpers.MovieRootElement;
+import at.technikumwien.services.soap.helpers.MovieRootElement;
 
 import javax.inject.Inject;
 import javax.jws.WebMethod;

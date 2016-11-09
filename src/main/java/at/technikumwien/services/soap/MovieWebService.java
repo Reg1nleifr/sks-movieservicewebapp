@@ -1,7 +1,7 @@
 package at.technikumwien.services.soap;
 
 import at.technikumwien.entity.Movie;
-import at.technikumwien.services.helpers.MovieRootElement;
+import at.technikumwien.services.soap.helpers.MovieRootElement;
 
 import javax.jws.WebService;
 import java.util.List;

@@ -1,10 +1,9 @@
-package at.technikumwien.services.helpers;
+package at.technikumwien.services.soap.helpers;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 
 /**
  * Created by Flo on 02/11/2016.

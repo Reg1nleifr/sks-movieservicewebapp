@@ -1,14 +1,12 @@
 package at.technikumwien.entity;
 
-import at.technikumwien.services.helpers.DateAdapter;
-import at.technikumwien.services.helpers.LocalDateAdapter;
+import at.technikumwien.services.soap.helpers.LocalDateAdapter;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -24,6 +22,12 @@ import java.util.List;
                 query = "select a from Actor a " +
                             "where a.firstname like concat('%', :name, '%') " +
                                 "or a.lastname like concat('%', :name, '%')"),
+        @NamedQuery(name = "Actor.getById",
+                query = "select a from Actor a " +
+                        "where a.id = :id"),
+        @NamedQuery(name = "Actor.deleteById",
+                query = "delete from Actor a " +
+                        "where a.id = :id"),
         @NamedQuery(name="Actor.getActorCount",
                 query = "select a from Actor a " +
                             "where a.lastname like :lastname " +

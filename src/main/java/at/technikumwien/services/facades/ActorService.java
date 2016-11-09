@@ -32,4 +32,8 @@ public class ActorService {
     }
 
 
+    public void deleteById(int id) {
+        entityManager.createNamedQuery("Actor.deleteById")
+                .executeUpdate();
+    }
 }

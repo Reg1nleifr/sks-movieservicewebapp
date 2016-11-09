@@ -1,4 +1,4 @@
-package at.technikumwien.services.helpers;
+package at.technikumwien.services.soap.helpers;
 
 import at.technikumwien.entity.Movie;
 

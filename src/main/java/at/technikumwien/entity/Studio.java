@@ -17,6 +17,12 @@ import java.util.List;
         @NamedQuery(name="Studio.getByName",
                 query = "select s from Studio s " +
                             "where s.name like concat('%',:name,'%')"),
+        @NamedQuery(name = "Studio.getById",
+                query = "select s from Studio s " +
+                        "where s.id = :id"),
+        @NamedQuery(name = "Studio.deleteById",
+                query = "delete from Studio s " +
+                        "where s.id = :id"),
         @NamedQuery(name="Studio.getStudioCount",
                 query = "select s from Studio s " +
                             "where s.name = :name " +
