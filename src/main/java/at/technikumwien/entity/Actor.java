@@ -44,7 +44,7 @@ public class Actor {
     private LocalDate birthdate;
     private List<Movie> movies;
 
-    @XmlTransient
+    @XmlAttribute
     @Id
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -86,7 +86,6 @@ public class Actor {
         this.sex = sex;
     }
 
-    //TODO: Localdate
     @XmlJavaTypeAdapter(value = LocalDateAdapter.class, type = LocalDate.class)
     @XmlAttribute
     @Column(name = "BIRTHDATE", nullable = true)

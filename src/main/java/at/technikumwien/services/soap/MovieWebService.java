@@ -13,8 +13,5 @@ import java.util.List;
 interface MovieWebService {
     MovieRootElement getAllMovies();
     MovieRootElement getMoviesContains(String name);
-
-    void persistMoviesFromSoap(String soapInput) throws Exception;
-
     void persistMovies(List<Movie> movies);
 }

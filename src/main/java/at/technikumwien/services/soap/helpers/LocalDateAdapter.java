@@ -19,6 +19,9 @@ public class LocalDateAdapter extends XmlAdapter<String, LocalDate>{
     @Override
     public String marshal(LocalDate v) throws Exception
     {
+        if (v == null) {
+            return "N/A";
+        }
         return v.format(formatter);
     }
 }

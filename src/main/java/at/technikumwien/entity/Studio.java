@@ -36,7 +36,7 @@ public class Studio {
     private String postcode;
     private List<Movie> movies;
 
-    @XmlTransient
+    @XmlAttribute
     @Id
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)

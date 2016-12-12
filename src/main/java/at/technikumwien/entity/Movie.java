@@ -35,7 +35,7 @@ public class Movie {
     private Studio studio;
     private List<Actor> actors;
 
-    @XmlTransient
+    @XmlAttribute
     @Id
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
