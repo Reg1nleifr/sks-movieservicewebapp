@@ -1,7 +1,6 @@
 package at.technikumwien.services.soap;
 
 import at.technikumwien.entity.Movie;
-import at.technikumwien.services.soap.helpers.MovieRootElement;
 
 import javax.jws.WebService;
 import java.util.List;
@@ -11,7 +10,8 @@ import java.util.List;
  */
 @WebService
 interface MovieWebService {
-    MovieRootElement getAllMovies();
-    MovieRootElement getMoviesContains(String name);
+    List<Movie> getAllMovies();
+
+    List<Movie> getMoviesContains(String name);
     void persistMovies(List<Movie> movies);
 }

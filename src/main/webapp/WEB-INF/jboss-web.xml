@@ -1,0 +1,3 @@
+<jboss-web>
+    <security-domain>MovieSD</security-domain>
+</jboss-web>

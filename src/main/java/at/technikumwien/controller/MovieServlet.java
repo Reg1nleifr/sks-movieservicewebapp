@@ -26,7 +26,7 @@ public class MovieServlet extends HttpServlet{
         PrintWriter out = response.getWriter();
         out.println("<html>");
         out.println("<body>");
-        out.print("<h1>MovieRootElement</h1>");
+        out.print("<h1>Movies</h1>");
         for (Movie movie: movieService.getAll()){
             out.print("<h2>"+movie.getTitle()+"</h2>");
             out.print("<p>"+movie.getDescription()+"</p>");
