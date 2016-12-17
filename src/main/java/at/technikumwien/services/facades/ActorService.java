@@ -1,8 +1,8 @@
 package at.technikumwien.services.facades;
 
 import at.technikumwien.entity.Actor;
+import org.jboss.annotation.security.SecurityDomain;
 import org.jboss.logging.Logger;
-import org.jboss.security.annotation.SecurityDomain;
 
 import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
@@ -32,8 +32,6 @@ public class ActorService {
 
     public List<Actor> getAll() {
         logger.info(sessionContext.getCallerPrincipal());
-        //ctx.isCallerInRole("END_USER")
-
         return entityManager.createNamedQuery("Actor.getAll", Actor.class)
                 .getResultList();
     }

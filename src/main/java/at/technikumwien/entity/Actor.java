@@ -3,9 +3,7 @@ package at.technikumwien.entity;
 import at.technikumwien.services.soap.helpers.LocalDateAdapter;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 import java.util.List;
@@ -14,6 +12,7 @@ import java.util.List;
  * Created by Flo on 06/10/16.
  */
 @XmlRootElement
+@XmlAccessorType(XmlAccessType.PROPERTY)
 @Entity
 @Table(name = "Actor")
 @NamedQueries({

@@ -2,7 +2,9 @@ package at.technikumwien.services.rest;
 
 import at.technikumwien.entity.Actor;
 import at.technikumwien.services.facades.ActorService;
+import org.jboss.annotation.security.SecurityDomain;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -14,6 +16,8 @@ import java.util.List;
 /**
  * Created by Flo on 28/11/2016.
  */
+@SecurityDomain("MovieSD")
+@RolesAllowed(value = "END_USER")
 @Path("actors")
 public class ActorResource {
 

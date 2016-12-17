@@ -3,8 +3,10 @@ package at.technikumwien.services.facades;
 import at.technikumwien.entity.Actor;
 import at.technikumwien.entity.Movie;
 import at.technikumwien.entity.Studio;
+import org.jboss.annotation.security.SecurityDomain;
 import org.jboss.logging.Logger;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -16,6 +18,8 @@ import java.util.List;
  * Created by Stefan on 26.10.2016.
  */
 @Stateless
+@SecurityDomain("MovieSD")
+@RolesAllowed(value = "END_USER")
 public class MovieService {
 
     private final Logger logger = Logger.getLogger(MovieService.class);

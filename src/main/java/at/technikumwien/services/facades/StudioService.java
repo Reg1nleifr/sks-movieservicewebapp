@@ -1,7 +1,9 @@
 package at.technikumwien.services.facades;
 
 import at.technikumwien.entity.Studio;
+import org.jboss.annotation.security.SecurityDomain;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,6 +13,8 @@ import java.util.List;
  * Created by Stefan on 26.10.2016.
  */
 @Stateless
+@SecurityDomain("MovieSD")
+@RolesAllowed("END_USER")
 public class StudioService {
 
     @PersistenceContext

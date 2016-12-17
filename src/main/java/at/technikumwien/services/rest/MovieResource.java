@@ -2,7 +2,9 @@ package at.technikumwien.services.rest;
 
 import at.technikumwien.entity.Movie;
 import at.technikumwien.services.facades.MovieService;
+import org.jboss.annotation.security.SecurityDomain;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -13,6 +15,8 @@ import java.util.List;
 /**
  * Created by Flo on 07/11/2016.
  */
+@SecurityDomain("MovieSD")
+@RolesAllowed(value = "END_USER")
 @Path("/movies")
 public class MovieResource extends RestApplication {
 
