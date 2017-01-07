@@ -6,11 +6,14 @@ import at.technikumwien.entity.Studio;
 import org.jboss.annotation.security.SecurityDomain;
 import org.jboss.logging.Logger;
 
+import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJBException;
+import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.xml.bind.SchemaOutputResolver;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +22,6 @@ import java.util.List;
  */
 @Stateless
 @SecurityDomain("MovieSD")
-@RolesAllowed(value = "END_USER")
 public class MovieService {
 
     private final Logger logger = Logger.getLogger(MovieService.class);
@@ -28,6 +30,10 @@ public class MovieService {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Resource
+    SessionContext ctx;
+
+    @RolesAllowed("MSRead")
     public Movie getById(int id) {
         if(cachedMovies == null) {
             getAll();
@@ -36,7 +42,9 @@ public class MovieService {
     }
 
 
+    @RolesAllowed("MSRead")
     public List<Movie> getAll() {
+
         if(cachedMovies == null) {
             cachedMovies = entityManager.createNamedQuery("Movie.getAll", Movie.class)
                     .getResultList();
@@ -44,7 +52,9 @@ public class MovieService {
         return cachedMovies;
     }
 
+    @RolesAllowed("MSWrite")
     public void persistTransactionally(List<Movie> movies) {
+
         for (Movie movie: movies) {
             List<Actor> actors = getPersistedActors(movie.getActors());
             Studio studio = getPersistedStudio(movie.getStudio());
@@ -57,6 +67,7 @@ public class MovieService {
         }
     }
 
+    @RolesAllowed("MSWrite")
     private List<Actor> getPersistedActors(List<Actor> actors) {
         List<Actor> persistedActores = new ArrayList<>();
         for (Actor actor: actors) {
@@ -71,6 +82,7 @@ public class MovieService {
         return persistedActores;
     }
 
+    @RolesAllowed("MSRead")
     private Studio getPersistedStudio(Studio studio) {
         return entityManager.createNamedQuery("Studio.getStudioCount", Studio.class)
                 .setParameter("name", studio.getName())
@@ -78,6 +90,7 @@ public class MovieService {
                 .setParameter("postcode", studio.getPostcode()).getSingleResult();
     }
 
+    @RolesAllowed("MSRead")
     private boolean movieExists(Movie movie) {
         return  0 != entityManager.createNamedQuery("Movie.getMovieCount", Movie.class)
                 .setParameter("title", movie.getTitle())
@@ -87,6 +100,7 @@ public class MovieService {
                 .setParameter("length", movie.getLength()).getResultList().size();
     }
 
+    @RolesAllowed("MSRead")
     public List<Movie> contains(String name) {
         return entityManager.createNamedQuery("Movie.getByTitle", Movie.class)
                 .setParameter("name", name.toLowerCase()).getResultList();

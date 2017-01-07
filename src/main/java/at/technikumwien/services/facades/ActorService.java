@@ -18,7 +18,6 @@ import java.util.List;
 
 @Stateless
 @SecurityDomain("MovieSD")
-@RolesAllowed("END_USER")
 public class ActorService {
 
     private final Logger logger = Logger.getLogger(ActorService.class);
@@ -28,25 +27,26 @@ public class ActorService {
     @Resource
     private SessionContext sessionContext;
 
-
-
+    @RolesAllowed("MSRead")
     public List<Actor> getAll() {
         logger.info(sessionContext.getCallerPrincipal());
         return entityManager.createNamedQuery("Actor.getAll", Actor.class)
                 .getResultList();
     }
 
+    @RolesAllowed("MSWrite")
     public void persist(Actor saveActor) {
         entityManager.persist(saveActor);
     }
 
+    @RolesAllowed("MSRead")
     public List<Actor> findByName(String name) {
         String searchName = name;
         return entityManager.createNamedQuery("Actor.getByName", Actor.class)
                 .setParameter("name", searchName).getResultList();
     }
 
-
+    @RolesAllowed("MSWrite")
     public void deleteById(int id) {
         entityManager.createNamedQuery("Actor.deleteById")
                 .executeUpdate();

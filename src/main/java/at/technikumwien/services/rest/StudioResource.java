@@ -16,8 +16,6 @@ import java.util.List;
 /**
  * Created by Flo on 28/11/2016.
  */
-@SecurityDomain("MovieSD")
-@RolesAllowed(value = "END_USER")
 @Path("studios")
 public class StudioResource {
 

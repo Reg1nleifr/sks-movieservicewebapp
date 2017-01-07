@@ -26,9 +26,9 @@ CREATE TABLE sec_user_role (
 INSERT INTO sec_user (userid, username, password) VALUES (1, 'myadmin', SHA2('topsecret', 512));
 INSERT INTO sec_user (userid, username, password) VALUES (2, 'myuser', SHA2('topsecret', 512));
 
-INSERT INTO sec_role (roleid, rolename) VALUES (1, 'ADMIN'); # Everything
-INSERT INTO sec_role (roleid, rolename) VALUES (2, 'END_USER'); # READ
-INSERT INTO sec_role (roleid, rolename) VALUES (3, 'SUPER_USER'); # WRITE / READ
+INSERT INTO sec_role (roleid, rolename) VALUES (1, 'ADMIN');
+INSERT INTO sec_role (roleid, rolename) VALUES (2, 'END_USER');
+INSERT INTO sec_role (roleid, rolename) VALUES (3, 'SUPER_USER');
 
 INSERT INTO sec_user_role (userid, roleid) VALUES (1, 1);
 INSERT INTO sec_user_role (userid, roleid) VALUES (2, 2);

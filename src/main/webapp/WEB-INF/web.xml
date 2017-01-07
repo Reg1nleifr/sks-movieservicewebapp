@@ -22,26 +22,22 @@
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Movies</web-resource-name>
-            <url-pattern>*</url-pattern>
+            <url-pattern>/*</url-pattern>
             <http-method-omission>OPTIONS</http-method-omission>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>SUPER_USER</role-name>
-            <role-name>ADMIN</role-name>
-            <role-name>END_USER</role-name>
+            <role-name>MSRead</role-name>
+            <role-name>MSWrite</role-name>
+            <role-name>MSOther</role-name>
         </auth-constraint>
     </security-constraint>
     <security-role>
-        <description>Super User</description>
-        <role-name>SUPER_USER</role-name>
+        <role-name>MSRead</role-name>
     </security-role>
     <security-role>
-        <description>End User</description>
-        <role-name>END_USER</role-name>
+        <role-name>MSWrite</role-name>
     </security-role>
     <security-role>
-        <description>Admin</description>
-        <role-name>ADMIN</role-name>
+        <role-name>MSOther</role-name>
     </security-role>
-
 </web-app>

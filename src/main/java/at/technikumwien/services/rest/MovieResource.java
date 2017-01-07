@@ -15,8 +15,6 @@ import java.util.List;
 /**
  * Created by Flo on 07/11/2016.
  */
-@SecurityDomain("MovieSD")
-@RolesAllowed(value = "END_USER")
 @Path("/movies")
 public class MovieResource extends RestApplication {
 
