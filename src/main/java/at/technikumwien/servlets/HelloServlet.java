@@ -1,4 +1,4 @@
-package at.technikumwien.controller;
+package at.technikumwien.servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

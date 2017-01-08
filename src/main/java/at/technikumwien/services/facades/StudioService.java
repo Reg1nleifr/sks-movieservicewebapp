@@ -10,7 +10,8 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
- * Created by Stefan on 26.10.2016.
+ * Created by Flo & Stefan
+ * Studio Service
  */
 @Stateless
 @SecurityDomain("MovieSD")
@@ -31,13 +32,6 @@ public class StudioService {
     }
 
     @RolesAllowed("MSRead")
-    public List<Studio> findByName(String name) {
-        String searchName = "%"+name+"%";
-        return entityManager.createNamedQuery("Studio.getByName", Studio.class)
-                .setParameter("name", searchName).getResultList();
-    }
-
-    @RolesAllowed("MSRead")
     public Studio getById(int id) {
         return entityManager.createNamedQuery("Studio.getById", Studio.class)
                 .setParameter("id", id).getSingleResult();
@@ -46,6 +40,7 @@ public class StudioService {
     @RolesAllowed("MSWrite")
     public void deleteById(int id) {
         entityManager.createNamedQuery("Studio.deleteById")
+                .setParameter("id", id)
                 .executeUpdate();
     }
 }

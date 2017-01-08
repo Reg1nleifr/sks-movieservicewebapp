@@ -13,7 +13,8 @@ import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
 /**
- * Created by Flo on 07/11/2016.
+ * Created by Flo & Stefan
+ * Rest Resource Movie
  */
 @Path("/movies")
 public class MovieResource extends RestApplication {
@@ -24,7 +25,7 @@ public class MovieResource extends RestApplication {
     UriInfo uriInfo;
 
     @GET
-    @Path("{movieId}") //resources/movies/getmovie/1?filter=abc
+    @Path("{movieId}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Movie getMovie(@PathParam("movieId") int id, @QueryParam("filter") String filter) {
         return movieService.getById(id);

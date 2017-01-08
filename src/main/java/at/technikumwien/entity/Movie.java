@@ -5,7 +5,9 @@ import javax.xml.bind.annotation.*;
 import java.util.List;
 
 /**
- * Created by Flo on 06/10/16.
+ * Created by Flo & Stefan
+ * Movie Class
+ * Named Queries in JPQL
  */
 @XmlRootElement
 @XmlType(propOrder = {"title", "genre", "length", "releaseYear","actors" ,"studio" , "description"})
@@ -16,7 +18,7 @@ import java.util.List;
         @NamedQuery(name="Movie.getByTitle",
                 query = "select m from Movie m " +
                             "where m.title like concat('%',lower(:name),'%') "),
-        @NamedQuery(name="Movie.getMovieCount",
+        @NamedQuery(name="Movie.getMovie",
                 query = "select m from Movie m " +
                         "where m.title = :title " +
                             "and m.description = :description " +

@@ -1,4 +1,4 @@
-package at.technikumwien.controller;
+package at.technikumwien.servlets;
 
 import at.technikumwien.entity.Movie;
 import at.technikumwien.services.facades.MovieService;

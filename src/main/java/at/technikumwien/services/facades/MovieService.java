@@ -13,12 +13,12 @@ import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.xml.bind.SchemaOutputResolver;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Stefan on 26.10.2016.
+ * Created by Flo & Stefan
+ * Movie Service
  */
 @Stateless
 @SecurityDomain("MovieSD")
@@ -44,6 +44,7 @@ public class MovieService {
 
     @RolesAllowed("MSRead")
     public List<Movie> getAll() {
+        logger.log(Logger.Level.INFO, ctx.getCallerPrincipal());
 
         if(cachedMovies == null) {
             cachedMovies = entityManager.createNamedQuery("Movie.getAll", Movie.class)
@@ -69,22 +70,22 @@ public class MovieService {
 
     @RolesAllowed("MSWrite")
     private List<Actor> getPersistedActors(List<Actor> actors) {
-        List<Actor> persistedActores = new ArrayList<>();
+        List<Actor> persistedActors = new ArrayList<>();
         for (Actor actor: actors) {
-            // Throws an exceptoin if there is no or more than one result on the db
-            Actor persistedActor = entityManager.createNamedQuery("Actor.getActorCount", Actor.class)
+            // Throws an exception if there is no or more than one result on the db
+            Actor persistedActor = entityManager.createNamedQuery("Actor.getActor", Actor.class)
                     .setParameter("birthdate", actor.getBirthdate())
                     .setParameter("firstname", actor.getFirstname())
                     .setParameter("lastname", actor.getLastname())
                     .setParameter("sex", actor.getSex()).getSingleResult();
-            persistedActores.add(persistedActor);
+            persistedActors.add(persistedActor);
         }
-        return persistedActores;
+        return persistedActors;
     }
 
     @RolesAllowed("MSRead")
     private Studio getPersistedStudio(Studio studio) {
-        return entityManager.createNamedQuery("Studio.getStudioCount", Studio.class)
+        return entityManager.createNamedQuery("Studio.getStudio", Studio.class)
                 .setParameter("name", studio.getName())
                 .setParameter("countrycode", studio.getCountrycode())
                 .setParameter("postcode", studio.getPostcode()).getSingleResult();
@@ -92,7 +93,7 @@ public class MovieService {
 
     @RolesAllowed("MSRead")
     private boolean movieExists(Movie movie) {
-        return  0 != entityManager.createNamedQuery("Movie.getMovieCount", Movie.class)
+        return  0 != entityManager.createNamedQuery("Movie.getMovie", Movie.class)
                 .setParameter("title", movie.getTitle())
                 .setParameter("description", movie.getDescription())
                 .setParameter("genre", movie.getGenre())

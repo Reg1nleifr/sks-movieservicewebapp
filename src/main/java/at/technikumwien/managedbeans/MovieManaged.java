@@ -9,7 +9,8 @@ import javax.inject.Named;
 import java.util.List;
 
 /**
- * Created by Stefan on 26.10.2016.
+ * Created by Flo & Stefan
+ * Managed Bean Movie
  */
 @RequestScoped
 @Named("reqMovie")

@@ -9,7 +9,8 @@ import javax.inject.Named;
 import java.util.List;
 
 /**
- * Created by Flo on 21/10/2016.
+ * Created by Flo & Stefan
+ * Managed Bean Actor
  */
 @RequestScoped
 @Named("reqActor")

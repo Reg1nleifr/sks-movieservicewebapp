@@ -6,12 +6,12 @@ import javax.jws.WebService;
 import java.util.List;
 
 /**
- * Created by Flo on 28/10/2016.
+ * Created by Flo & Stefan
+ * Web Service Interface
  */
 @WebService
 interface MovieWebService {
     List<Movie> getAllMovies();
-
     List<Movie> getMoviesContains(String name);
     void persistMovies(List<Movie> movies);
 }

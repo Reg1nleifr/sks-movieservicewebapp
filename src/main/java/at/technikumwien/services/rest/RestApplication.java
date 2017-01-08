@@ -4,7 +4,8 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 /**
- * Created by Flo on 07/11/2016.
+ * Created by Flo & Stefan
+ * Rest Application
  */
 @ApplicationPath("/resources")
 public class RestApplication extends Application {

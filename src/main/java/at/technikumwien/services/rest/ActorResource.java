@@ -14,7 +14,8 @@ import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
 /**
- * Created by Flo on 28/11/2016.
+ * Created by Flo & Stefan
+ * Rest Resource Actor
  */
 @Path("actors")
 public class ActorResource {
@@ -29,7 +30,7 @@ public class ActorResource {
     @Path("/{actorId}")
     @Produces({MediaType.APPLICATION_JSON})
     public Actor getActor(@PathParam("actorId") int id) {
-        return actorService.getAll().get(id); //TODO: ByID schreiben..
+        return actorService.getAll().get(id);
     }
 
     @GET
@@ -40,7 +41,6 @@ public class ActorResource {
 
 
     @POST
-    @Path("/create")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response postActor(Actor actor) {
@@ -50,7 +50,6 @@ public class ActorResource {
     }
 
     @PUT
-    @Path("/update")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response putActor(Actor studio) {
@@ -59,7 +58,6 @@ public class ActorResource {
     }
 
     @DELETE
-    @Path("/deleteById")
     @Produces(MediaType.TEXT_PLAIN)
     public Response deleteActor(@QueryParam("id") int id) {
         actorService.deleteById(id);

@@ -14,7 +14,8 @@ import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
 /**
- * Created by Flo on 28/11/2016.
+ * Created by Flo & Stefan
+ * Rest Resource Studio
  */
 @Path("studios")
 public class StudioResource {
@@ -38,17 +39,14 @@ public class StudioResource {
     }
 
     @POST
-    @Path("/create")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response postStudio(Studio studio) {
         studioService.persist(studio);
-        String result = studio.getId() + " : " + uriInfo.getPath();
         return Response.status(201).entity(studio.getId()).build();
     }
 
     @PUT
-    @Path("/update")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response putStudio(Studio studio) {
@@ -57,7 +55,6 @@ public class StudioResource {
     }
 
     @DELETE
-    @Path("/deleteById")
     @Produces(MediaType.TEXT_PLAIN)
     public Response deleteStudio(@QueryParam("id") int id) {
         studioService.deleteById(id);

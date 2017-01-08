@@ -1,11 +1,12 @@
-package at.technikumwien.services.soap.helpers;
+package at.technikumwien.services.helpers;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Created by Stefan on 08.11.2016.
+ * Created by Flo & Stefan
+ * Date Adapter for Xml
  */
 public class LocalDateAdapter extends XmlAdapter<String, LocalDate>{
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

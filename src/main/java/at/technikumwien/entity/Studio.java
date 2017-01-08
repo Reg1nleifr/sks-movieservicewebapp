@@ -7,7 +7,9 @@ import javax.xml.bind.annotation.XmlTransient;
 import java.util.List;
 
 /**
- * Created by Flo on 06/10/16.
+ * Created by Flo & Stefan
+ * Studio Class
+ * Named Queries in JPQL
  */
 @XmlRootElement
 @Entity
@@ -23,7 +25,7 @@ import java.util.List;
         @NamedQuery(name = "Studio.deleteById",
                 query = "delete from Studio s " +
                         "where s.id = :id"),
-        @NamedQuery(name="Studio.getStudioCount",
+        @NamedQuery(name="Studio.getStudio",
                 query = "select s from Studio s " +
                             "where s.name = :name " +
                                 "and s.countrycode = :countrycode " +

@@ -12,10 +12,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-/**
- * Created by Flo on 06/10/16.
- */
 
+/**
+ * Created by Flo & Stefan
+ * Actor Service
+ */
 @Stateless
 @SecurityDomain("MovieSD")
 public class ActorService {
@@ -39,16 +40,10 @@ public class ActorService {
         entityManager.persist(saveActor);
     }
 
-    @RolesAllowed("MSRead")
-    public List<Actor> findByName(String name) {
-        String searchName = name;
-        return entityManager.createNamedQuery("Actor.getByName", Actor.class)
-                .setParameter("name", searchName).getResultList();
-    }
-
     @RolesAllowed("MSWrite")
     public void deleteById(int id) {
         entityManager.createNamedQuery("Actor.deleteById")
+                .setParameter("id", id)
                 .executeUpdate();
     }
 }

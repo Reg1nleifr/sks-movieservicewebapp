@@ -1,6 +1,6 @@
 package at.technikumwien.entity;
 
-import at.technikumwien.services.soap.helpers.LocalDateAdapter;
+import at.technikumwien.services.helpers.LocalDateAdapter;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
@@ -9,7 +9,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 /**
- * Created by Flo on 06/10/16.
+ * Created by Flo & Stefan
+ * Actor Class
+ * Named Queries in JPQL
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.PROPERTY)
@@ -27,7 +29,7 @@ import java.util.List;
         @NamedQuery(name = "Actor.deleteById",
                 query = "delete from Actor a " +
                         "where a.id = :id"),
-        @NamedQuery(name="Actor.getActorCount",
+        @NamedQuery(name="Actor.getActor",
                 query = "select a from Actor a " +
                             "where a.lastname like :lastname " +
                                 "and a.firstname like :firstname " +

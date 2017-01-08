@@ -1,4 +1,4 @@
-package at.technikumwien.controller;
+package at.technikumwien.servlets;
 
 import at.technikumwien.entity.Actor;
 import at.technikumwien.services.facades.ActorService;
