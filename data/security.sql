@@ -23,12 +23,13 @@ CREATE TABLE sec_user_role (
   FOREIGN KEY (roleid) REFERENCES sec_role (roleid)
 );
 
-INSERT INTO sec_user (userid, username, password) VALUES (1, 'myadmin', SHA2('topsecret', 512));
-INSERT INTO sec_user (userid, username, password) VALUES (2, 'myuser', SHA2('topsecret', 512));
-
-INSERT INTO sec_role (roleid, rolename) VALUES (1, 'ADMIN');
-INSERT INTO sec_role (roleid, rolename) VALUES (2, 'END_USER');
-INSERT INTO sec_role (roleid, rolename) VALUES (3, 'SUPER_USER');
-
+INSERT INTO sec_user (userid, username, password) VALUES (1, 'reader', SHA2('123', 512));
+INSERT INTO sec_user (userid, username, password) VALUES (2, 'writer', SHA2('123', 512));
+INSERT INTO sec_user (userid, username, password) VALUES (3, 'other', SHA2('123', 512));
+INSERT INTO sec_role (roleid, rolename) VALUES (1, 'MSRead');
+INSERT INTO sec_role (roleid, rolename) VALUES (2, 'MSWrite');
+INSERT INTO sec_role (roleid, rolename) VALUES (3, 'MSOther');
 INSERT INTO sec_user_role (userid, roleid) VALUES (1, 1);
+INSERT INTO sec_user_role (userid, roleid) VALUES (2, 1);
 INSERT INTO sec_user_role (userid, roleid) VALUES (2, 2);
+INSERT INTO sec_user_role (userid, roleid) VALUES (3, 3);

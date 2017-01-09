@@ -2,11 +2,7 @@ package at.technikumwien.services.soap;
 
 import at.technikumwien.entity.Movie;
 import at.technikumwien.services.facades.MovieService;
-import org.jboss.annotation.security.SecurityDomain;
 
-import javax.annotation.Resource;
-import javax.annotation.security.RolesAllowed;
-import javax.ejb.SessionContext;
 import javax.inject.Inject;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
